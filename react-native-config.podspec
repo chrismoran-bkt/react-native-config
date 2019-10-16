@@ -16,16 +16,16 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '7.0'
   s.tvos.deployment_target = '9.0'
 
-  s.source       = { git: 'https://github.com/luggit/react-native-config.git', tag: "v#{s.version}" }
+  s.source       = { git: 'https://github.com/chrismoran-bkt/react-native-config.git', tag: "v#{s.version}" }
   s.script_phase = {
     name: 'Config codegen',
     script: %(
 set -ex
-HOST_PATH="$SRCROOT/../.."
-"../../node_modules/react-native-config/ios/ReactNativeConfig/BuildDotenvConfig.rb" "$HOST_PATH" "${PODS_TARGET_SRCROOT}/ios/ReactNativeConfig"
+HOST_PATH="${SRCROOT}/../.."
+"../../node_modules/react-native-config/ios/ReactNativeConfig/BuildDotenvConfig.rb" "${HOST_PATH}" "${PODS_TARGET_SRCROOT}/ios/ReactNativeConfig"
 ),
     execution_position: :before_compile,
-    input_files: ['$(SRCROOT)/ReactNativeConfig/BuildDotenvConfig.rb']
+    input_files: ['$(SRCROOT)/../../ReactNativeConfig/BuildDotenvConfig.rb']
   }
 
   s.source_files = 'ios/**/*.{h,m}'
